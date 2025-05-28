@@ -1,0 +1,57 @@
+{
+    "Name": "ConsortiumSSOUserAdmin",
+    "Description": "Allows users to create/disable users, add/remove users from groups",
+    "SessionDuration": "PT1H",
+    "ManagedPolicies": [],
+    "CustomPolicy": {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Sid": "ManageIdentityCenterUsersAndGroups",
+                "Effect": "Allow",
+                "Action": [
+                    "identitystore:CreateUser",
+                    "identitystore:UpdateUser",
+                    "identitystore:DeleteUser",
+                    "identitystore:DescribeUser",
+                    "identitystore:ListUsers",
+                    "identitystore:CreateGroupMembership",
+                    "identitystore:DeleteGroupMembership",
+                    "identitystore:ListGroupMemberships",
+                    "identitystore:ListGroupMembershipsForMember",
+                    "identitystore:ListGroups",
+                    "identitystore:DescribeGroup",
+                    "sso-directory:DisableUser",
+                    "sso-directory:AddMemberToGroup",
+                    "sso-directory:RemoveMemberFromGroup",
+                    "sso-directory:CreateUser"
+                ],
+                "Resource": "*"
+            },
+            {
+                "Sid": "AllowIdentityCenterConsoleAccess",
+                "Effect": "Allow",
+                "Action": [
+                    "sso:ListInstances",
+                    "sso:DescribeInstance",
+                    "sso:GetSSOConfiguration",
+                    "sso-directory:DescribeDirectory",
+                    "sso-directory:SearchUsers",
+                    "sso-directory:SearchGroups",
+                    "sso-directory:DescribeUsers",
+                    "sso-directory:DescribeGroup",
+                    "sso-directory:ListGroupsForUser",
+                    "sso-directory:ListMembersInGroup",
+                    "sso-directory:ListMfaDevicesForUser",
+                    "identitystore:ListUsers",
+                    "identitystore:ListGroups",
+                    "identitystore:DescribeUser",
+                    "identitystore:DescribeGroup",
+                    "identitystore:GetUserId",
+                    "identitystore:GetGroupId"
+                ],
+                "Resource": "*"
+            }
+        ]
+    }
+}

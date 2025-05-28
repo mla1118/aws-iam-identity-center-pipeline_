@@ -1,3 +1,4 @@
+
 # Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
 # Permission is hereby granted, free of charge, to any person obtaining a copy of this
@@ -13,6 +14,7 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+# Updates written by Michele Ambrose for CalSAWS Consortium Security
 ## + -----------------------
 ## | AWS SSO Assignments Managemnet
 ## +-----------------------------------
@@ -46,6 +48,18 @@ parser = argparse.ArgumentParser(description='AWS SSO Permission Set Management'
 parser.add_argument('--mgmt_account', action="store", dest='mgmtAccount')
 
 args = parser.parse_args()
+
+def assignment_exists(instance_arn, permission_set_arn, principal_id, principal_type, target_id):
+    client = boto3.client('sso-admin')
+    response = client.list_account_assignments(
+        InstanceArn=instance_arn,
+        AccountId=target_id,
+        PermissionSetArn=permission_set_arn
+    )
+    for assignment in response['AccountAssignments']:
+        if assignment['PrincipalId'] == principal_id and assignment['PrincipalType'] == principal_type:
+            return True
+    return False
 
 def get_current_permissionset_list():
     client = boto3.client('sso-admin', config=config)
@@ -230,6 +244,10 @@ def create_assignment_file(permissionSetsArn,repositoryAssignments):
             
             for eachAccount in accounts:
                 if eachAccount != managementAccount:
+                    # Check if assignment already exists in AWS SSO
+                    if assignment_exists(ssoInstanceArn, permissionSetsArn[assignment['PermissionSetName']], principalId, assignment['PrincipalType'], eachAccount):
+                        log.info(f"[INFO] Assignment for {assignment['PrincipalId']} on {eachAccount} with {assignment['PermissionSetName']} already exists. Skipping.")
+                        continue
                     resolvedAssingmnets['Assignments'].append(
                         {
                             "Sid": str(eachAccount)+str(assignment['PrincipalId'])+str(assignment['PrincipalType'])+str(assignment['PermissionSetName']),

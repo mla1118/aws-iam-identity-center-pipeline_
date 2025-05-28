@@ -1,0 +1,10 @@
+{
+    "Name": "CFATReadOnly",
+    "Description": "Consortium Cloud Foundation Assessment Tool (CFAT) Read Only and CloudShellFullAccess",
+    "SessionDuration": "PT1H",
+    "ManagedPolicies": [
+        "arn:aws:iam::aws:policy/AWSCloudShellFullAccess",
+        "arn:aws:iam::aws:policy/ReadOnlyAccess"
+    ],
+    "CustomPolicy": ""
+}

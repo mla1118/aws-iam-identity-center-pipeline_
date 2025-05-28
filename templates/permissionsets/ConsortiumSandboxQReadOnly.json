@@ -1,0 +1,24 @@
+{
+    "Name": "ConsortiumSandboxQReadOnly",
+    "Description": "AmazonQ Read Only Access",
+    "SessionDuration": "PT1H",
+    "ManagedPolicies": [],
+    "CustomPolicy": {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Sid": "AmazonQReadOnlyMinimalAccess",
+                "Effect": "Allow",
+                "Action": [
+                    "q:ListAssistants",
+                    "q:GetAssistant",
+                    "q:ListChatSessions",
+                    "q:GetChatSession",
+                    "q:ListMessages",
+                    "q:GetMessage"
+                ],
+                "Resource": "*"
+            }
+        ]
+    }
+}

@@ -1,0 +1,120 @@
+{
+    "Name": "SSO_User_Admin",
+    "Description": "testing out other functionality",
+    "SessionDuration": "PT1H",
+    "ManagedPolicies": [
+        "arn:aws:iam::aws:policy/AWSSSOReadOnly",
+        "arn:aws:iam::aws:policy/ReadOnlyAccess"
+    ],
+    "CustomPolicy": {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Sid": "AllowCreateAndDisableUsers",
+                "Effect": "Allow",
+                "Action": [
+                    "identitystore:CreateUser",
+                    "identitystore:UpdateUser",
+                    "identitystore:DescribeUser",
+                    "sso-directory:CreateUser",
+                    "sso-directory:SearchUsers",
+                    "sso-directory:DescribeUser",
+                    "sso-directory:GetUserId"
+                ],
+                "Resource": "*"
+            },
+            {
+                "Sid": "AllowGroupMembershipModification",
+                "Effect": "Allow",
+                "Action": [
+                    "identitystore:CreateGroupMembership",
+                    "identitystore:DeleteGroupMembership",
+                    "identitystore:ListGroupMemberships",
+                    "identitystore:DescribeGroupMembership",
+                    "identitystore:ListGroups",
+                    "identitystore:ListUsers",
+                    "identitystore:GetUserId",
+                    "identitystore:DescribeGroup",
+                    "identitystore:GetGroupId",
+                    "sso-directory:CreateGroupMembership",
+                    "sso-directory:AddMemberToGroup",
+                    "sso-directory:RemoveMemberFromGroup"
+                ],
+                "Resource": "*"
+            },
+            {
+                "Sid": "AllowConsoleReadOnlyAccessToIdentityCenter",
+                "Effect": "Allow",
+                "Action": [
+                    "sso:DescribePermissionSet",
+                    "sso:ListPermissionSets",
+                    "sso:ListInstances",
+                    "sso:ListAccountAssignments",
+                    "sso:ListAccountsForProvisionedPermissionSet",
+                    "sso:ListPermissionSetProvisioningStatus",
+                    "sso:DescribeAccountAssignmentCreationStatus",
+                    "sso:DescribeAccountAssignmentDeletionStatus",
+                    "sso:GetApplicationAccessScope",
+                    "sso:GetApplicationAssignmentConfiguration",
+                    "sso:DescribeInstance",
+                    "sso:GetSSOConfiguration",
+                    "sso-directory:DescribeDirectory",
+                    "sso-directory:SearchUsers",
+                    "sso-directory:SearchGroups",
+                    "sso-directory:DescribeUsers",
+                    "sso-directory:ListMfaDevicesForUser",
+                    "sso-directory:DescribeGroups",
+                    "sso-directory:DescribeGroup",
+                    "sso-directory:ListGroupsForUser",
+                    "sso-directory:ListGroupMembershipsForMember"
+                ],
+                "Resource": "*"
+            },
+            {
+                "Sid": "ExplicitlyDenyUserAndGroupDeletion",
+                "Effect": "Deny",
+                "Action": [
+                    "identitystore:DeleteUser",
+                    "identitystore:DeleteGroup"
+                ],
+                "Resource": "*"
+            },
+            {
+                "Sid": "FixAddUserToGroupUIBehavior",
+                "Effect": "Allow",
+                "Action": [
+                    "identitystore:IsMemberInGroups"
+                ],
+                "Resource": "*"
+            },
+            {
+                "Sid": "AllowSSODirectoryGroupLookups",
+                "Effect": "Allow",
+                "Action": [
+                    "sso-directory:ListMembersInGroup"
+                ],
+                "Resource": "*"
+            },
+            {
+                "Sid": "AllowUserDisablement",
+                "Effect": "Allow",
+                "Action": [
+                    "sso-directory:DisableUser"
+                ],
+                "Resource": "*"
+            },
+            {
+                "Sid": "AllowCloudTrailQuerying",
+                "Effect": "Allow",
+                "Action": [
+                    "cloudtrail:LookupEvents",
+                    "cloudtrail:StartQuery",
+                    "cloudtrail:GetQueryResults",
+                    "cloudtrail:ListQueries",
+                    "cloudtrail:ListEventDataStores"
+                ],
+                "Resource": "*"
+            }
+        ]
+    }
+}

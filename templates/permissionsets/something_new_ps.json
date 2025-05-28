@@ -1,0 +1,7 @@
+{
+    "Name": "something_new_ps",
+    "Description": "something new to test",
+    "SessionDuration": "PT1H",
+    "ManagedPolicies": [],
+    "CustomPolicy": ""
+}

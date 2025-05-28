@@ -1,0 +1,22 @@
+{
+    "Name": "AuditSet_batchtest_5",
+    "Description": "Audit access only",
+    "SessionDuration": "PT1H",
+    "ManagedPolicies": [
+        "arn:aws:iam::aws:policy/SecurityAudit",
+        "arn:aws:iam::aws:policy/job-function/ViewOnlyAccess"
+    ],
+    "CustomPolicy": {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Effect": "Allow",
+                "Action": [
+                    "logs:DescribeLogGroups",
+                    "logs:GetLogEvents"
+                ],
+                "Resource": "*"
+            }
+        ]
+    }
+}

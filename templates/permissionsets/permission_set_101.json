@@ -1,0 +1,7 @@
+{
+    "Name": "permission_set_101",
+    "Description": "testing script - to be deleted",
+    "SessionDuration": "PT1H",
+    "ManagedPolicies": [],
+    "CustomPolicy": ""
+}

@@ -1,0 +1,69 @@
+{
+    "Name": "POC_Bedrock_LLM_access",
+    "Description": "Provides access to a defined set of AWS services required to support generative AI POC workloads in the GenAIPOC account, specifically leveraging Amazon Bedrock LLM features.",
+    "SessionDuration": "PT1H",
+    "ManagedPolicies": [
+        "arn:aws:iam::aws:policy/AWSStepFunctionsFullAccess",
+        "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess",
+        "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
+    ],
+    "CustomPolicy": {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Sid": "AllowBedrockInvoke",
+                "Effect": "Allow",
+                "Action": [
+                    "bedrock:InvokeModel",
+                    "bedrock:ListFoundationModels",
+                    "bedrock:GetModelInvocationLoggingConfiguration"
+                ],
+                "Resource": "*"
+            },
+            {
+                "Sid": "AllowStepFunctionsExecution",
+                "Effect": "Allow",
+                "Action": [
+                    "states:StartExecution",
+                    "states:DescribeExecution",
+                    "states:GetExecutionHistory",
+                    "states:ListExecutions"
+                ],
+                "Resource": "*"
+            },
+            {
+                "Sid": "AllowS3WriteAccessForPOC",
+                "Effect": "Allow",
+                "Action": [
+                    "s3:PutObject",
+                    "s3:GetObject",
+                    "s3:ListBucket"
+                ],
+                "Resource": [
+                    "arn:aws:s3:::your-poc-bucket-name",
+                    "arn:aws:s3:::your-poc-bucket-name/*"
+                ]
+            },
+            {
+                "Sid": "AllowPineconeExternalAccess",
+                "Effect": "Allow",
+                "Action": [
+                    "secretsmanager:GetSecretValue",
+                    "ssm:GetParameter"
+                ],
+                "Resource": [
+                    "arn:aws:secretsmanager:*:*:secret:PineconeAPIKey-*",
+                    "arn:aws:ssm:*:*:parameter/pinecone/*"
+                ]
+            },
+            {
+                "Sid": "AllowQuickSightAccess",
+                "Effect": "Allow",
+                "Action": [
+                    "quicksight:*"
+                ],
+                "Resource": "*"
+            }
+        ]
+    }
+}

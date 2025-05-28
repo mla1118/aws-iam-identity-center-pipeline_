@@ -1,0 +1,7 @@
+{
+    "Name": "something_new_permission_set",
+    "Description": "something new testing",
+    "SessionDuration": "PT1H",
+    "ManagedPolicies": [],
+    "CustomPolicy": ""
+}

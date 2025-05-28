@@ -1,0 +1,7 @@
+{
+    "Name": "ps-1",
+    "Description": "testing",
+    "SessionDuration": "PT1H",
+    "ManagedPolicies": [],
+    "CustomPolicy": ""
+}
