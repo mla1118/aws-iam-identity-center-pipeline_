@@ -1,0 +1,9 @@
+{
+    "Name": "pipeline-straight-test",
+    "Description": "just created to test creating permission set directly from uploading the JSON file",
+    "SessionDuration": "PT1H",
+    "ManagedPolicies": [
+        "arn:aws:iam::aws:policy/job-function/ViewOnlyAccess"
+    ],
+    "CustomPolicy": ""
+}
