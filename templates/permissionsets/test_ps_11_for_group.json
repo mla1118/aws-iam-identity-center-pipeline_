@@ -37,7 +37,6 @@
                     "identitystore:GetUserId",
                     "identitystore:DescribeGroup",
                     "identitystore:GetGroupId",
-                    "sso-directory:CreateGroupMembership",
                     "sso-directory:AddMemberToGroup",
                     "sso-directory:RemoveMemberFromGroup"
                 ],
@@ -66,8 +65,7 @@
                     "sso-directory:ListMfaDevicesForUser",
                     "sso-directory:DescribeGroups",
                     "sso-directory:DescribeGroup",
-                    "sso-directory:ListGroupsForUser",
-                    "sso-directory:ListGroupMembershipsForMember"
+                    "sso-directory:ListGroupsForUser"
                 ],
                 "Resource": "*"
             },
