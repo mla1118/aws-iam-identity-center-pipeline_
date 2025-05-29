@@ -21,7 +21,6 @@
                     "sso:GetTrust",
                     "sso:CreateTrust",
                     "sso:UpdateTrust",
-                    "sso:GetPeregrineStatus",
                     "sso:GetApplicationInstance",
                     "sso:ListDirectoryAssociations",
                     "sso:ListPermissionSets",
