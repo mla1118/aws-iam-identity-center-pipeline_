@@ -25,7 +25,6 @@
                     "sso:ListDirectoryAssociations",
                     "sso:ListPermissionSets",
                     "sso:GetPermissionSet",
-                    "sso:ProvisionApplicationInstanceForAWSAccount",
                     "sso:ProvisionSAMLProvider",
                     "sso:ListProfileAssociations",
                     "sso-directory:ListMembersInGroup",
