@@ -10,13 +10,12 @@
                 "Sid": "AmazonQReadOnlyMinimalAccess",
                 "Effect": "Allow",
                 "Action": [
-                    "q:ListAssistants",
-                    "q:GetAssistant",
-                    "q:ListChatSessions",
-                    "q:GetChatSession",
-                    "q:ListMessages",
-                    "q:GetMessage"
-                ],
+                    "q:ListPluginProviders",
+                    "q:ListDashboardMetrics",
+                    "q:ListPlugins",
+                    "q:ListTagsForResource",
+                    "q:ListConversations"
+			],
                 "Resource": "*"
             }
         ]
